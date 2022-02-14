@@ -18,33 +18,30 @@
 // Liste des clubs
 
 foreach ($club as $kClub => $vClub) {
-    echo '<a href="index.php?id='.$vClub->getIdClub().'">'.$vClub->getNomClub().'</a><br>';
+    echo '<a href="result.php?id='.$vClub->getIdClub().'">'.$vClub->getNomClub().'</a><br>';
 }
 
-if (isset($_GET["id"])) {
-    echo "<br>→ Nom du Club : " . $club[$_GET["id"]]->getNomClub()."<br>";
-    foreach ($club[$_GET["id"]]->getLesSports() as $kSport => $vSport) {
-        echo "» ".$vSport->getNomSport()."<br>";
+if ($_GET["id"]) {
+    echo "<br>Club" . $club[$_GET["id"]]->getNomClub() . "<br>";
+    foreach ($club[$_GET["id"]]->getLesSports() as $keySport => $valueSport) {
+        echo $valueSport->getNomSport() . "<br>";
     }
 }
+echo "
+            <br>
+            Formulaire ID CLUB
+            </br>
+            <form method='post' name='formIdClub' action='result.php'>
+                <label for='pet-select'>Choose a pet: </label>
 
-/*
-foreach ($club[2]->getLesSports() as $kSport => $vSport) {
-    echo $vSport->getNomSport().'<br>';
+                <select name='pets' id='pet-select'>
+                    <option value=''>--Choisir un club--</option>";
+
+foreach ($club as $kFormClub => $vFormClub)
+{
+    echo "<option value='".$vFormClub->getIdClub()."'>".$vFormClub->getNomClub()."</option>";
 }
-*/
-    /**
-     foreach ($listSport as $keyListSport => $valueListSport)
-    {
-        echo $valueListSport->getDescription()."<br>";
-    }**/
-    /**
-    foreach ($listClub as $value) {
-        echo $value->getNomClub()."<br>";
-    }**/
-    echo "<br>"."Vous vous trouvez actuellement dans dans l'ID de Club n°" . $_GET['id'] . "<br>" . "<br>";
+echo"</select>
 
-
-
-    echo "<br>"."<br>"."<br>"."<br>"."<br>";
-    echo "𝑃𝑜𝑢𝑟 𝑚𝑜𝑛 𝑐ℎ𝑒𝑟 𝑎𝑚𝑖 𝐸𝑣𝑟𝑎𝑟𝑑";
+                <button type='submit'>Envoie</button>
+            </form>";
