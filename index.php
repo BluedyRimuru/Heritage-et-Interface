@@ -16,8 +16,8 @@
     $club[2] = new Club(2, "PSG",67);
     $club[3] = new Club(3, "Nantes",65);
 
-
-    $listSport[] = new Sport("Football", 11);
+/**
+**    $listSport[] = new Sport("Football", 11);
     $listSport[] = new SportRelais("4x100", 1, 400);
     $listSport[] = new SportRelais("100", 1, 100);
     $listSport[] = new SportRelais("200", 1, 200);
@@ -28,10 +28,11 @@
     $listSport[] = new Sport("Climbing", 1);
     $listSport[] = new SportRelais("CarJaking", 1, 10000);
     $listSport[] = new Sport("e-sport", 1);
-
+**/
 
 // Les sports de Dijon
-    $listSport[1] = new SportBallon("Basketball", 5, 35, 45);
+$sb = new SportBallon("Basketball", 5, 35, 45);
+$club[1]->AjouterSport($sb);
 
 // Les sports de PSG
 $sport1 = new Sport("Javelot", 1);
@@ -55,44 +56,36 @@ $club[3]->AjouterSport($sportBallon3);
 $club[3]->AjouterSport($sportBallon4);
 $club[3]->AjouterSport($sportRelais2);
 
-    /*
-     foreach ($listSport as $keyListSport => $valueListSport)
-    {
-        echo $valueListSport->getDescription()."<br>";
-    }*/
+//var_dump((int) $_GET["id"]);
 
-    echo "<br>"."Liste des clubs : "."<br>"."<br>";
-    /*
-    foreach ($listClub as $value) {
-        echo $value->getNomClub()."<br>";
-    }*/
-?>
-<!DOCTYPE html>
-<html>
-<body>
+// Liste des clubs
 
-<a href="/?id=1">Dijon, id : 1</a> <br>
-<a href="/?id=2">PSG, id : 2</a> <br>
-<a href="/?id=3">Nantes, id : 3</a> <br> <br> <br>
+foreach ($club as $kClub => $vClub) {
+    echo '<a href="index.php?id='.$vClub->getIdClub().'">'.$vClub->getNomClub().'</a><br>';
+}
 
-</body>
-</html>
-
-<?php
-
-    echo "Salut les amis ! Club ID : " . $_GET['id'] . "<br>" . "<br>";
-
-if ($_GET = 1) {
-    foreach ($listSport as $keyListSport => $valueListSport)
-    {
-        echo $valueListSport->getDescription()."<br>";
+if ($_GET["id"]) {
+    echo "<br>→ Nom du Club : " . $club[$_GET["id"]]->getNomClub()."<br>";
+    foreach ($club[$_GET["id"]]->getLesSports() as $kSport => $vSport) {
+        echo $vSport->getNomSport()."<br>";
     }
 }
 
-if ($_GET['/?id=1']) {
-    echo "Bonsoir le monde";
+
+foreach ($club[2]->getLesSports() as $kSport => $vSport) {
+    echo $vSport->getNomSport().'<br>';
 }
 
+    /**
+     foreach ($listSport as $keyListSport => $valueListSport)
+    {
+        echo $valueListSport->getDescription()."<br>";
+    }**/
+    /**
+    foreach ($listClub as $value) {
+        echo $value->getNomClub()."<br>";
+    }**/
+    echo "<br>"."Vous vous trouvez actuellement dans dans l'ID de Club n°" . $_GET['id'] . "<br>" . "<br>";
 
 
 
