@@ -67,15 +67,15 @@ foreach ($club as $kClub => $vClub) {
 if ($_GET["id"]) {
     echo "<br>→ Nom du Club : " . $club[$_GET["id"]]->getNomClub()."<br>";
     foreach ($club[$_GET["id"]]->getLesSports() as $kSport => $vSport) {
-        echo $vSport->getNomSport()."<br>";
+        echo "» ".$vSport->getNomSport()."<br>";
     }
 }
 
-
+/*
 foreach ($club[2]->getLesSports() as $kSport => $vSport) {
     echo $vSport->getNomSport().'<br>';
 }
-
+*/
     /**
      foreach ($listSport as $keyListSport => $valueListSport)
     {
